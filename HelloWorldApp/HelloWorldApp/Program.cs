@@ -30,16 +30,16 @@ namespace HelloWorldApp
         }
     }
 
-    public interface IWrite
+    public abstract class IWrite
     {
-        bool Output();
+        public virtual bool Output() { return true; }
     }
 
     public class WriteToConsole : IWrite
     {
-        public bool Output()
+        public override bool Output() 
         {
-            Console.WriteLine("You have chosen to write to console");
+            Console.WriteLine("Hellow world");
             Console.Read();
             return true;
         }
@@ -47,12 +47,12 @@ namespace HelloWorldApp
 
     public class WriteToDatabase : IWrite
     {
-        public bool Output()
+        public override bool Output()
         {
             Console.WriteLine("You have chosen to write to database");
             Console.Read();
             return true;
-        }
+        }       
     }
 
 

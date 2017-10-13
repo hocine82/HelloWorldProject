@@ -1,4 +1,5 @@
 ﻿using System;
+using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HelloWorldApp;
 
@@ -9,20 +10,16 @@ namespace UnitTest
     {
         [TestMethod]
         public void TestConsoleOutput_WillReturnTrue()
-        {            
-            WriteToConsole wc = new WriteToConsole();
-            LogData lg = new LogData(wc);
-            bool isInserted = lg.insert();
-            Assert.AreEqual(isInserted, true);
+        {
+            Mock<WriteToConsole> wc = new Mock<WriteToConsole>();
+            wc.Setup(x => x.Output()).Returns(true);
         }
 
         [TestMethod]
         public void TestDataBaseWrite_WillReturnTrue()
-        {
-            WriteToDatabase wd = new WriteToDatabase();
-            LogData lg = new LogData(wd);
-            bool isInserted = lg.insert();
-            Assert.AreEqual(isInserted, true);
+        {            
+            Mock<WriteToDatabase> wd = new Mock<WriteToDatabase>();
+            wd.Setup(x => x.Output()).Returns(true);            
         }
 
     }
